@@ -10,10 +10,63 @@ Modify the number of repetitions in the simulation to 100 (from the original 100
 
 Alter the code so that it is reproducible. Describe the changes you made to the code and how they affected the reproducibility of the script file. The output does not need to match Whitby’s original blogpost/graphs, it just needs to produce the same output when run multiple times
 
-# Author: YOUR NAME
+# Author: Chelsey
 
 ```
-Please write your explanation here...
+1. ~
+Initial Sampling:
+The model begins with a defined population of 1,000 individuals, where 200 attend a wedding and 800 attend a brunch. This is structured using the following line of code:
+
+events = ['wedding'] * 200 + ['brunch'] * 800
+
+Infection Sampling:
+From the total population, 10% are randomly selected to become infected. This results in approximately 20 infections from the wedding group and 80 from the brunch group, for a total of 100 cases — matching the proportions mentioned in the blog post. The random selection is performed using:
+
+infected_indices = np.random.choice(ppl.index, size=int(len(ppl) * ATTACK_RATE), replace=False)
+ppl.loc[infected_indices, 'infected'] = True
+
+This uses uniform random sampling without replacement to assign infections.
+
+Primary Tracing Sampling:
+A fraction (20%) of the infected individuals are randomly chosen to be successfully traced. This is implemented via:
+
+ppl.loc[ppl['infected'], 'traced'] = np.random.rand(sum(ppl['infected'])) < TRACE_SUCCESS
+
+The np.random.rand() function generates a random value for each infected person to determine if they are traced.
+With a seed set (e.g., np.random.seed(123)), the result might be something like:
+
+False    86  
+True     14
+
+Secondary Tracing Based on Event Participation:
+The model then performs a secondary tracing phase, where events are flagged if at least two traced individuals attended. In these cases, all infected individuals at those events are also marked as traced. This is executed using:
+
+event_trace_counts = ppl[ppl['traced'] == True]['event'].value_counts()
+events_traced = event_trace_counts[event_trace_counts >= SECONDARY_TRACE_THRESHOLD].index
+ppl.loc[ppl['event'].isin(events_traced) & ppl['infected'], 'traced'] = True
+
+This step biases the tracing process in favor of events with more initial traced cases.
+
+Final Observations:
+After running the full simulation with np.random.seed(123), the final count of traced infections might yield:
+
+ppl['traced'].value_counts()
+
+Resulting in 79 traced infections from brunch and 21 from weddings. This output is slightly different from the blog’s example, which lists 80 and 20, but still aligns closely due to inherent randomness in the sampling.
+
+2. ~
+
+Running the whitby_covid_tracing.py script as-is produces two histograms showing the proportion of infections and traced cases attributed to weddings across 1000 simulations. These results closely mirror the graphs in Whitby’s blog post, where the actual infections from weddings center around 0.2 (reflecting their 20% representation in the sample), while the traced cases skew higher—often between 0.3 and 0.5—demonstrating how weddings become overrepresented in contact tracing data. This visual and statistical pattern effectively supports the blog’s main point: contact tracing introduces bias by amplifying visibility for events where tracing happens to be more successful. While slight variations may occur due to the script’s use of random sampling without a fixed seed, the overall shape and message of the plots are consistent with those in the original blog post.
+
+3.~
+
+After modifying the number of simulation repetitions from 1000 to 100 and running the script multiple times, it becomes clear that the output histograms vary noticeably with each execution. This is due to the inherent randomness in the infection and tracing processes, especially given the smaller sample of repetitions, which increases the variability between runs. As a result, the shape, spread, and even the central tendencies of the histograms (particularly the traced distribution) can shift from one run to another. This demonstrates that without a fixed random seed, the results are not reproducible, and conclusions drawn from a single run may not be reliable. Reproducibility in this context would require either a larger number of repetitions or controlling the randomness to ensure consistent outputs.
+
+4. ~
+Code modified in .py file. The main component needed was:
+
+np.random.seed(12)  - Modification to ensures reproducible results
+results = [simulate_event(m) for m in range(100)] - Changed for the 100 simulation repititions
 
 ```
 
