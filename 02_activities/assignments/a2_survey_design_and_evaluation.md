@@ -40,30 +40,36 @@ For the **Canadian General Social Survey on Giving, Volunteering, and Participat
 
 ## Part A - Survey Design: 
 
-The number of your chosen topic: `#`
+The number of your chosen topic: `2`
 
 Describe the purpose of your survey:
+
 ```
-write your answer here...
+The purpose of this survey is to identify the key issues, values, and leadership qualities that matter most to Canadian voters in the final month leading up to the federal election. By understanding voter priorities and perceptions of the party’s performance, the survey will inform strategic decisions to maintain public support and secure an election win.
+
 ```
 
 Describe your target population, sampling frame, sampling units, and observational units:
 ```
-write your answer here...
+Target Population: Eligible Canadian voters across all provinces and territories who intend to vote in the upcoming federal election.
+
+Sampling Frame: A compiled list of registered voters from Elections Canada, supplemented by national polling panels and phone/email directories to ensure broader coverage.
+
+Sampling Units: Individual registered voters selected from the sampling frame.
+
+Observational Units: The same individual voters who respond to the survey and provide information on their preferences, concerns, and political attitudes.
 ```
 
 Your 5-10 question survey:
 ```
-1. write your question here...
-2. write your question here...
-3. write your question here...
-4. write your question here...
-5. write your question here...
-6. write your question here... (optional)
-7. write your question here... (optional)
-8. write your question here... (optional)
-9. write your question here... (optional)
-10. write your question here... (optional)
+1. Which federal political party do you currently support or lean toward supporting?
+2. How likely are you to vote in the upcoming federal election?
+3. How would you rate the performance of the current government?
+4. How trustworthy do you find the leader of our party?
+5. Which of the following best describes your political engagement?
+6. Have your opinions about our party changed over the past month?
+7. What is your age group?
+
 ```
 
 ## Part B - Survey Evaluation:
@@ -71,7 +77,47 @@ Your 5-10 question survey:
 Identify and describe survey features:
 
 ```
-write your answer here
+1. Sample type:
+    Probability sample using stratified sampling and rejective sub-sampling. One respondent aged 15+ per household was randomly selected. Volunteers were oversampled using longer interviews; non-volunteers were split into short or long interview groups.
+2. Sample size
+   A field sample of approximatively 50,000 units was used. Among them, about 40,000 invitation letters to the electronic questionnaire were sent to selected households across Canada. A completion of 24,000 questionnaires was expected.
+3. Target population
+    Persons aged 15 and older living in private households in the ten Canadian provinces.
+    Excludes: residents of territories and institutionalized individuals.
+4. Sampling frame
+    A blended sampling frame was used, incorporating both landline and mobile telephone numbers. These were derived from Statistics Canada’s dwelling frame, which is informed by census data and administrative records.
+5. Survey mode(s) 
+    - A stratified random sampling design was implemented, where stratification occurred by province and census metropolitan area (CMA). One person aged 15+ was randomly selected from each household, with no proxy respondents permitted.
+    - Once the minimum sample size for each province was achieved, additional sample allocation was optimized to balance precision needs for both national and regional estimates.
+    - A rejective sub-sampling approach was used after determining if respondents volunteered. All volunteers completed a full questionnaire, while non-volunteers were split into two groups: one completing the full questionnaire, the other a shortened version.)
+6. Timeline
+    Data collection took place from September 4 to December 28, 2018.
+7. Response rate
+    The overall response rate was 41.9%.
+8. Weights
+    - Each respondent was assigned a weight representing how many people in the population they stand in for (e.g., 1:50).
+    - These weights were adjusted to ensure alignment with 2017 Canadian Income Survey (CIS) distributions by province.
+    - Bootstrap weights were also created to allow for accurate variance estimation.
+9. Data processing
+    Processing followed Statistics Canada's Social Survey Processing Environment (SSPE), which uses standardized tools and workflows.
+10. Cleaning, imputation, etc
+    - IBoth automated and manual checks were conducted at multiple stages.
+    - Family structure and matrix data were reviewed for logical consistency.
+    - Logical flows were validated to ensure respondents answered relevant questions.
+    - CATI system-based error detection and corrections were implemented during interviews.
+11. Sources of error
+    - Sampling error: Differences between sample estimates and true population values.
+    - Non-sampling errors: Issues like incomplete coverage of the population and non-response.
+    - Response error: Inaccurate answers from respondents.
+    - Processing error: Mistakes during data handling or processing.
+12. Limitations, known biases, etc
+   - Exclusion of territories and institutionalized populations may reduce generalizability.
+   - Self-reporting may introduce social desirability or recall bias.
+   - Mode effects (e.g., differences in responses between CATI and EQ).
+13. Link to documentation and any additional sources used
+- https://www23.statcan.gc.ca/imdb/p2SV.pl?Function=getSurvey&Id=796234
+- https://www23.statcan.gc.ca/imdb/p3Instr.pl?Function=getInstrumentList&Item_Id=1183690&UL=1V&
+
 ```
 
 ## Rubric
@@ -93,9 +139,9 @@ write your answer here
     * Open a private window in your browser. Copy and paste the link to your pull request into the address bar. Make sure you can see your pull request properly. This helps the technical facilitator and learning support staff review your submission easily.
 
 Checklist:
-- [ ] Create a branch called `assignment-2`.
-- [ ] Ensure that the repository is public.
-- [ ] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
-- [ ] Verify that the link is accessible in a private browser window.
+- [X] Create a branch called `assignment-2`.
+- [X] Ensure that the repository is public.
+- [X] Review [the PR description guidelines](https://github.com/UofT-DSI/onboarding/blob/main/onboarding_documents/submissions.md#guidelines-for-pull-request-descriptions) and adhere to them.
+- [X] Verify that the link is accessible in a private browser window.
 
 If you encounter any difficulties or have questions, please don't hesitate to reach out to our team via the help channel in Slack. Our Technical Facilitators and Learning Support staff are here to help you navigate any challenges.
